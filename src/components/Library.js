@@ -10,69 +10,36 @@
                 super(props)
                 this.state = {
                     showSearchPage: false,
-                    books: [],
                     shelf : 'None'
                 }
             }
-                componentDidMount(){
-                    getAll()
-                    .then (res => {
-                    console.log(res)
-                    this.setState({
-                    books : res
-                    }) 
-                    }
-                    )
-                }
-                //  changeBookShelf = (book,shelf ) => {
-                //     update = (book, shelf).then(b => {
-                //         console.log(b);
-                //         this.setState({books: b})
-                        
-                //     })
-                //  }
                 
-                updateBookShelf = (book, shelf) => {
-                    update(book, shelf).then(() =>
-                        console.log('The shelf is updated'))
-                        const updatedBooks = this.state.books.map(b => {
-                        if (b.id === book.id) {
-                            b.shelf = shelf;
-                            console.log(book)}
-                    return b
-                        })
-                    
-                        this.setState({
-                        books: updatedBooks,
-                        shelf:shelf           })
-                        console.log(this.state.books);
-                        
-                        }
+                
                         
 
         
 
             render() {
                 
-                    const currentlyReadingShelfBooks = this.state.books.filter(book => {
+                    const currentlyReadingShelfBooks = this.props.books.filter(book => {
                     return (
                         book.shelf === 'currentlyReading'
                     )
                     })
 
-                    const wantToReadShelfBooks = this.state.books.filter(book => {
+                    const wantToReadShelfBooks = this.props.books.filter(book => {
                         return (
                             book.shelf === 'wantToRead'
                         )
                         })
-                        const readShelfBooks = this.state.books.filter(book => {
+                        const readShelfBooks = this.props.books.filter(book => {
                             return (
                                 book.shelf === 'read'
                             )
                             })
                 return (
                     <div>
-                    {this.state.showSearchPage ? (<SearchBooks books={this.state.books} onChangeBookShelf={this.updateBookShelf} shelf={this.state.shelf}   />):(
+                    {this.state.showSearchPage ? (<SearchBooks books={this.props.books} onChangeBookShelf={this.props.updateBookShelf} shelf={this.state.shelf}   />):(
                         <div className="list-books">
                         <div className="list-books-title">
                         <h1>MyReads</h1>
@@ -93,7 +60,7 @@
                     <div className="book-cover">
                     <img src={book.imageLinks.thumbnail} alt=''/>
                     </div>  
-                        <ShelfChanger shelf={book.shelf} book={book} onChangeBookShelf={ this.updateBookShelf} />
+                        <ShelfChanger shelf={book.shelf} book={book} onChangeBookShelf={ this.props.updateBookShelf} />
                     </div>
                     <div className="book-title">{book.title}</div>
                     <div className="book-authors">{book.authors}</div>
@@ -119,7 +86,7 @@
                     <div className="book-cover">
                     <img src={book.imageLinks.thumbnail} alt=''/>
                     </div>  
-                    <ShelfChanger shelf={book.shelf} book={book} onChangeBookShelf={this.updateBookShelf}/>
+                    <ShelfChanger shelf={book.shelf} book={book} onChangeBookShelf={this.props.updateBookShelf}/>
 
                     </div>
                     <div className="book-title">{book.title}</div>
@@ -146,7 +113,7 @@
                     <div className="book-cover">
                     <img src={book.imageLinks.thumbnail} alt=''/>
                     </div>  
-                    <ShelfChanger shelf={book.shelf} book={book} onChangeBookShelf={this.updateBookShelf}/>
+                    <ShelfChanger shelf={book.shelf} book={book} onChangeBookShelf={this.props.updateBookShelf}/>
                     </div>
                     <div className="book-title">{book.title}</div>
                     <div className="book-authors">{book.authors}</div>

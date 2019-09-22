@@ -13,6 +13,15 @@
         }
         
         render() {
+                const updatedSearchedBooks = this.props.searchedBooks.map(b => {
+                    this.props.books.map(myBook => {
+                    if (myBook.id === b.id) {
+                        b.shelf = myBook.shelf
+                    }
+                    return myBook
+                    })
+                    return b
+                })
             return (
                 <div className="search-books">
                 <div className="search-books-bar">
@@ -26,7 +35,7 @@
                 </div>
                 <div className="search-books-results">
                 <ol className="books-grid">
-                {this.props.searchedBooks.map(book => {
+                {updatedSearchedBooks.map(book => {
                     return (
                         <li key={book.id}>
                         <div className="book">
