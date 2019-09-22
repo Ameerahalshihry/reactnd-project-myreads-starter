@@ -4,8 +4,6 @@ import SearchBooks from './components/SearchBooks.js'
 import Library from './components/Library'
 import { BrowserRouter, Route } from 'react-router-dom'
 import {search} from './BooksAPI'
-import { log } from 'util';
-import * as BooksAPI from './BooksAPI'
 
 
 
@@ -22,20 +20,19 @@ class BooksApp extends Component {
 
   
 searchForBooks = (query) => {
-  // this.setState({ query: query.trim() });
-  
       if (query.length > 0) {
-      BooksAPI.search(query).then(books => {
-        if (books.error) {
-          this.setState({ searchedBooks: [] });
-        } else {
+      search(query).then(books => {
           this.setState({ searchedBooks: books });
             console.log(books);
-
-        }
       });
-    }  
+    } 
 }
+
+closeSearch = () =>
+{
+  this.setState({ searchedBooks: [] });
+}
+
   render() {
     return (
       <BrowserRouter>
@@ -43,7 +40,7 @@ searchForBooks = (query) => {
       <Route exact path='/' component={ Library } />
       <Route path='/search' 
       render= {() => <SearchBooks searchedBooks={this.state.searchedBooks} 
-      onChange={this.searchForBooks}/>}/>
+      onChange={this.searchForBooks} onClose={this.closeSearch}/>}/>
       </div>
       </BrowserRouter>
     )
