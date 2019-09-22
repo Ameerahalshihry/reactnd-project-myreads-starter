@@ -63,7 +63,7 @@ closeSearch = () =>
       render = {() => <Library books={this.state.books}  updateBookShelf={this.updateBookShelf}/>} />
       <Route path='/search' 
       render= {() => <SearchBooks searchedBooks={this.state.searchedBooks} 
-      onChange={this.searchForBooks} onClose={this.closeSearch} books={this.state.books}/>}/>
+      onChange={this.searchForBooks} onClose={this.closeSearch} books={this.state.books} updateBookShelf={this.updateBookShelf}/>}/>
       </div>
       </BrowserRouter>
     )

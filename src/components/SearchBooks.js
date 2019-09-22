@@ -43,7 +43,7 @@
                         <div className="book-cover">
                         <img src={book.imageLinks.thumbnail} alt=''/>
                         </div>  
-                        <ShelfChanger shelf={book.shelf ? book.shelf : 'none'} book={book} onChangeBookShelf={() => this.props.onChangeBookShelf}/>
+                        <ShelfChanger shelf={book.shelf ? book.shelf : 'none'} book={book} onChangeBookShelf={this.props.updateBookShelf}/>
                         </div>
                         <div className="book-title">{book.title}</div>
                         <div className="book-authors">{book.authors}</div>
