@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {update} from '../BooksAPI'
 
 export default class ShelfChanger extends Component {
     state = {
@@ -8,19 +7,8 @@ export default class ShelfChanger extends Component {
     updateHandler = (e) =>{
     
         this.setState({ shelf : e.target.value  }, () => {
-            console.log(`0- ${this.state.shelf}`);
-            console.log(`00- ${this.props.book}`);
-
-            this.props.onChangeBookShelf(this.props.book, this.state.shelf)
-            console.log(`1- ${this.state.shelf}`);
-            console.log(`2- ${this.props.book}`);
-
+        this.props.onChangeBookShelf(this.props.book, this.state.shelf)
         });
-    
-        console.log(this.props.book.shelf);
-        console.log(this.props.book);
-
-
     }
     render() {
         

@@ -1,7 +1,5 @@
         import React, { Component } from 'react'
         import SearchBooks from './SearchBooks'
-        import {getAll, update} from '../BooksAPI'
-
         import {Link} from 'react-router-dom'
         import ShelfChanger from './ShelfChanger'
 
@@ -14,11 +12,6 @@
                 }
             }
                 
-                
-                        
-
-        
-
             render() {
                 
                     const currentlyReadingShelfBooks = this.props.books.filter(book => {
