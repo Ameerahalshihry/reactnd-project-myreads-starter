@@ -15,10 +15,10 @@ class BooksApp extends Component {
     }
     componentDidMount(){
       getAll()
-      .then (res => {
-      console.log(res)
+      .then (allMyBook => {
+      console.log(allMyBook)
       this.setState({
-      books : res
+      books : allMyBook
       }) 
       }
       )
